@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.OFF);
+        Database database = new Database();
+        Scanner in = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Enter command: ");
+            String command = in.nextLine();
+
+            if (command.equals("add mage")) {
+                System.out.println("Enter mage name: ");
+                String mageName = in.nextLine();
+                System.out.println("Enter mage level: ");
+                int mageLevel = in.nextInt();
+                in.nextLine(); // consume newline left-over
+                Mage mage = new Mage(mageName, mageLevel);
+                database.addEntity(mage);
+            } else if (command.equals("add tower")) {
+                System.out.println("Enter tower name: ");
+                String towerName = in.nextLine();
+                System.out.println("Enter tower height: ");
+                int towerHeight = in.nextInt();
+                in.nextLine(); // consume newline left-over
+                Tower tower = new Tower(towerName, towerHeight);
+                database.addEntity(tower);
+            } else if (command.equals("delete mage")) {
+                System.out.println("Enter mage name: ");
+                String mageName = in.nextLine();
+                Mage mage = (Mage) database.getEntity(Mage.class, mageName);
+                if (mage != null) {
+                    database.deleteEntity(mage);
+                } else {
+                    System.out.println("Mage not found");
+                }
+            } else if (command.equals("delete tower")) {
+                System.out.println("Enter tower name: ");
+                String towerName = in.nextLine();
+                Tower tower = (Tower) database.getEntity(Tower.class, towerName);
+                if (tower != null) {
+                    database.deleteEntity(tower);
+                } else {
+                    System.out.println("Tower not found");
+                }
+            } else if (command.equals("exit")) {
+                break;
+            } else {
+                System.out.println("Unknown command");
+            }
+        }
+
+        in.close();
+        database.closeSession();
+    }
+}
