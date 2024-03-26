@@ -1,10 +1,1 @@
-T entity = null;
-    try {
-        entity = (T) session.createQuery("from " + entityClass.getSimpleName() + " where name = :name")
-                .setParameter("name", name)
-                .uniqueResult();
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-    return entity;
-}
+
