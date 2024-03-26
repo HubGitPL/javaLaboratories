@@ -1,0 +1,15 @@
+else if (command.equals("print all")) {
+                System.out.println("Printing all mages:");
+                List<?> mages = database.getEntities("from Mage");
+                for (Object obj : mages) {
+                    Mage mage = (Mage) obj;
+                    System.out.println(mage);
+                }
+
+                System.out.println("Printing all towers:");
+                List<?> towers = database.getEntities("from Tower");
+                for (Object obj : towers) {
+                    Tower tower = (Tower) obj;
+                    System.out.println(tower);
+                }
+            }
