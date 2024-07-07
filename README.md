@@ -3,7 +3,7 @@
 ## Subject
 Technological Platforms
 
-##Main goal
+## Main goal
 In my projects I mainly focused on
 multithreading, multitasking, testing, mocking, automation, databases
 
